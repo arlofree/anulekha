@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Himanshu & Anulekha</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: #0a0a0a;
+  color: white;
+  overflow-x: hidden;
+}
+
+/* GOLD GRADIENT */
+.gold {
+  background: linear-gradient(45deg,#d4af37,#f9e79f);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* HERO */
+.hero {
+  height: 100vh;
+  background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.8)), url('photo1.jpg') center/cover;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: 60px;
+  letter-spacing: 3px;
+  animation: fadeUp 1.5s ease;
+}
+
+.hero p {
+  margin-top: 10px;
+  opacity: 0.8;
+  animation: fadeUp 2s ease;
+}
+
+/* GLASS CARD */
+.glass {
+  backdrop-filter: blur(15px);
+  background: rgba(255,255,255,0.05);
+  border-radius: 20px;
+  padding: 40px;
+  max-width: 600px;
+  margin: 50px auto;
+}
+
+/* SECTIONS */
+.section {
+  padding: 100px 20px;
+  text-align: center;
+}
+
+/* GALLERY */
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
+  gap: 20px;
+  padding: 20px;
+}
+
+.gallery img {
+  width: 100%;
+  border-radius: 20px;
+  transition: 0.5s;
+}
+
+.gallery img:hover {
+  transform: scale(1.08);
+  filter: brightness(1.1);
+}
+
+/* COUNTDOWN */
+.countdown {
+  font-size: 28px;
+  margin-top: 20px;
+}
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from {opacity:0; transform:translateY(30px);}
+  to {opacity:1; transform:translateY(0);}
+}
+
+/* SCROLL REVEAL */
+.reveal {
+  opacity: 0;
+  transform: translateY(50px);
+  transition: 1s ease;
+}
+
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* PARTICLES */
+canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: -1;
+}
+</style>
+</head>
+
+<body>
+
+<canvas id="particles"></canvas>
+
+<section class="hero">
+  <div>
+    <h1>Himanshu <span class="gold">&</span> Anulekha</h1>
+    <p>We’re Getting Married</p>
+    <p class="gold">25 April 2026</p>
+  </div>
+</section>
+
+<section class="section reveal">
+  <h2 class="gold">Our Story</h2>
+  <p>A beautiful journey of love, trust and forever begins here.</p>
+</section>
+
+<section class="section reveal">
+  <h2 class="gold">Moments</h2>
+  <div class="gallery">
+    <img src="photo2.jpg">
+    <img src="photo3.jpg">
+    <img src="photo4.jpg">
+  </div>
+</section>
+
+<section class="section reveal">
+  <div class="glass">
+    <h2 class="gold">Wedding Details</h2>
+    <p><strong>Date:</strong> 25 April 2026</p>
+    <p><strong>Venue:</strong> Brij Ki Rasoi, Sitapur Road,<br>Near Sewa Hospital, Uttar Pradesh</p>
+    <div class="countdown" id="countdown"></div>
+  </div>
+</section>
+
+<script>
+// COUNTDOWN
+const weddingDate = new Date("April 25, 2026 00:00:00").getTime();
+
+setInterval(() => {
+  const now = new Date().getTime();
+  const distance = weddingDate - now;
+
+  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+  const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
+  const minutes = Math.floor((distance / (1000 * 60)) % 60);
+
+  document.getElementById("countdown").innerHTML =
+    days + " Days • " + hours + " Hours • " + minutes + " Min";
+}, 1000);
+
+// SCROLL REVEAL
+window.addEventListener('scroll', () => {
+  document.querySelectorAll('.reveal').forEach(el => {
+    const top = el.getBoundingClientRect().top;
+    if (top < window.innerHeight - 100) {
+      el.classList.add('active');
+    }
+  });
+});
+
+// PARTICLES
+const canvas = document.getElementById("particles");
+const ctx = canvas.getContext("2d");
+
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+
+for (let i = 0; i < 100; i++) {
+  particles.push({
+    x: Math.random() * canvas.width,
+    y: Math.random() * canvas.height,
+    r: Math.random() * 2,
+    d: Math.random() * 0.8
+  });
+}
+
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle = "#d4af37";
+
+  particles.forEach(p => {
+    ctx.beginPath();
+    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+    ctx.fill();
+  });
+
+  particles.forEach(p => {
+    p.y += p.d;
+    if (p.y > canvas.height) {
+      p.y = 0;
+    }
+  });
+}
+
+setInterval(draw, 33);
+</script>
+
+</body>
+</html>
