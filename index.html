@@ -19,7 +19,7 @@ body{font-family:'Inter',sans-serif;background:#fdfaf6;color:#3b2f2f;overflow-x:
 .hero{height:100vh;background:linear-gradient(rgba(0,0,0,0.3),rgba(0,0,0,0.3)), url('bwc.jpg') center/cover;
 display:flex;justify-content:center;align-items:center;text-align:center;position:relative;}
 .hero h1{font-family:'Alex Brush',cursive;font-size:60px;letter-spacing:3px;color:white;animation: fadeUp 1.5s ease;}
-  .hero p: first of type{
+  .hero .subtext{
     color: #ffffff;
     font-size: 28px;
     margin-top: 10px;
@@ -61,7 +61,7 @@ canvas{position:fixed;top:0;left:0;z-index:-1;}
 <section class="hero">
   <div>
     <h1>Himanshu <span class="gold">&</span> Anulekha</h1>
-    <p>We’re Getting Married</p>
+    <p> class="subtext">We’re Getting Married</p>
     
     <p class="gold">25 April 2026</p>
   </div>
@@ -72,7 +72,7 @@ canvas{position:fixed;top:0;left:0;z-index:-1;}
 window.addEventListener('load',()=>{
   let scrollPos=0;
   function slowScroll(){
-    scrollPos+=1.75;
+    scrollPos+=1.50;
     window.scrollTo(0,scrollPos);
     if(scrollPos<document.body.scrollHeight-window.innerHeight){
       requestAnimationFrame(slowScroll);
