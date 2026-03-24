@@ -60,12 +60,21 @@ button{
 </section>
 
 <!-- UPLOAD SECTION -->
-<section class="section">
-  <h2 class="gold">Upload Your Photos</h2>
+<section class="section reveal">
+  <h2 class="gold">Share Your Moments</h2>
+  <p>Upload your photos and become part of our celebration ❤️</p>
 
-  <input type="file" id="fileInput" accept="image/*"><br><br>
+  <div style="margin-top:20px;">
+    <input type="file" id="fileInput" accept="image/*"
+      style="padding:10px; border-radius:10px; background:#111; color:white; border:1px solid #444;">
+    
+    <br><br>
 
-  <button onclick="uploadImage()">Upload Photo 📸</button>
+    <button onclick="uploadImage()"
+      style="background:linear-gradient(45deg,#d4af37,#f9e79f); color:black; padding:12px 30px; border:none; border-radius:30px; font-weight:600; cursor:pointer;">
+      Upload Photo 📸
+    </button>
+  </div>
 </section>
 
 <!-- LIVE GALLERY -->
