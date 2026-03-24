@@ -7,311 +7,125 @@
 <title>Himanshu & Anulekha</title>
 
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Inter:wght@300;400&display=swap" rel="stylesheet">
-  
+
 <style>
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+*{margin:0;padding:0;box-sizing:border-box;}
+body{font-family:'Inter',sans-serif;background:#0a0a0a;color:white;overflow-x:hidden;}
+
+.gold{
+  background:linear-gradient(45deg,#d4af37,#f9e79f);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
 }
 
-body {
-  font-family: 'Inter', sans-serif;
-  background: #0a0a0a;
-  color: white;
-  overflow-x: hidden;
+.hero{
+  height:100vh;
+  background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.8)), url('photo1.jpg') center/cover;
+  display:flex;justify-content:center;align-items:center;text-align:center;
 }
 
-/* GOLD GRADIENT */
-.gold {
-  background: linear-gradient(45deg,#d4af37,#f9e79f);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+.hero h1{font-family:'Playfair Display';font-size:60px;}
+.section{padding:100px 20px;text-align:center;}
+
+.gallery{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:20px;padding:20px;
 }
 
-/* HERO */
-.hero {
-  height: 100vh;
-  background: linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.8)), url('photo1.jpg') center/cover;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  text-align: center;
-  position: relative;
+.gallery img{
+  width:100%;border-radius:20px;transition:0.4s;
 }
+.gallery img:hover{transform:scale(1.05);}
 
-.hero h1 {
-  font-family: 'Playfair Display', serif;
-  font-size: 60px;
-  letter-spacing: 3px;
-  animation: fadeUp 1.5s ease;
-}
-
-.hero p {
-  margin-top: 10px;
-  opacity: 0.8;
-  animation: fadeUp 2s ease;
-}
-
-/* GLASS CARD */
-.glass {
-  backdrop-filter: blur(15px);
-  background: rgba(255,255,255,0.05);
-  border-radius: 20px;
-  padding: 40px;
-  max-width: 600px;
-  margin: 50px auto;
-}
-
-/* SECTIONS */
-.section {
-  padding: 100px 20px;
-  text-align: center;
-}
-
-/* GALLERY */
-.gallery {
-  display: grid;
-  grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
-  gap: 20px;
-  padding: 20px;
-}
-
-.gallery img {
-  width: 100%;
-  border-radius: 20px;
-  transition: 0.5s;
-}
-
-.gallery img:hover {
-  transform: scale(1.08);
-  filter: brightness(1.1);
-}
-
-/* COUNTDOWN */
-.countdown {
-  font-size: 28px;
-  margin-top: 20px;
-}
-
-/* ANIMATIONS */
-@keyframes fadeUp {
-  from {opacity:0; transform:translateY(30px);}
-  to {opacity:1; transform:translateY(0);}
-}
-
-/* SCROLL REVEAL */
-.reveal {
-  opacity: 0;
-  transform: translateY(50px);
-  transition: 1s ease;
-}
-
-.reveal.active {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* PARTICLES */
-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
+button{
+  background:linear-gradient(45deg,#d4af37,#f9e79f);
+  color:black;
+  padding:12px 30px;
+  border:none;
+  border-radius:30px;
+  font-weight:600;
+  cursor:pointer;
 }
 </style>
 </head>
 
 <body>
 
-<canvas id="particles"></canvas>
-
 <section class="hero">
   <div>
     <h1>Himanshu <span class="gold">&</span> Anulekha</h1>
-    <p>We’re Getting Married</p>
-    <p class="gold">25 April 2026</p>
+    <p>25 April 2026</p>
   </div>
 </section>
 
-<section class="section reveal">
-  <h2 class="gold">Our Story</h2>
-  <p>A beautiful journey of love, trust and forever begins here.</p>
+<!-- UPLOAD SECTION -->
+<section class="section">
+  <h2 class="gold">Upload Your Photos</h2>
+
+  <input type="file" id="fileInput" accept="image/*"><br><br>
+
+  <button onclick="uploadImage()">Upload Photo 📸</button>
 </section>
 
-<section class="section reveal">
-  <h2 class="gold">Moments</h2>
-  <div class="gallery">
-    <img src="IMG_20260324_151205_575.jpg">
-    <img src="IMG_20260324_154809_627.jpg">
-    <img src="IMG_20260324_162950_980 (1).jpg">
-    <img src="IMG_20260324_151205_598.jpg">
-    <img src="IMG_20260324_151930_919.jpg">
-    <img src="IMG_20260324_151205_574.jpg">
-  </div>
-</section>
-
-<section class="section reveal">
-  <div class="glass">
-    <h2 class="gold">Wedding Details</h2>
-    <p><strong>Date:</strong> 25 April 2026</p>
-    <p><strong>Venue:</strong> Brij Ki Rasoi, Sitapur Road,<br>Near Sewa Hospital, Uttar Pradesh</p>
-    <div class="countdown" id="countdown"></div>
-  </div>
-</section>
-<section class="section reveal">
-  <h2 class="gold">Share Your Moments</h2>
-  <p>Upload your photos and become part of our celebration ❤️</p>
-
-  <div style="margin-top:20px;">
-    <input type="file" id="fileInput" accept="image/*"
-      style="padding:10px; border-radius:10px; background:#111; color:white; border:1px solid #444;">
-    
-    <br><br>
-
-    <button onclick="uploadImage()"
-      style="background:linear-gradient(45deg,#d4af37,#f9e79f); color:black; padding:12px 30px; border:none; border-radius:30px; font-weight:600; cursor:pointer;">
-      Upload Photo 📸
-    </button>
-  </div>
-</section>
- <section class="section reveal">
+<!-- LIVE GALLERY -->
+<section class="section">
   <h2 class="gold">Live Guest Memories</h2>
-  <p>Moments shared by our loved ones ❤️</p>
-  <div id="cloudinary-gallery" class="gallery"></div>
-</section>
-  <section class="section reveal">
-  <h2 class="gold">The Invitation</h2>
-  <p>
-    With immense joy in our hearts, we invite you to be a part of our special day.
-    Your presence will make our celebration complete.
-  </p>
-</section>
-  <section class="section reveal">
-  <h2 class="gold">Venue</h2>
-  <p>Brij Ki Rasoi, Sitapur Road</p>
-
-  <a href="https://maps.google.com" target="_blank" 
-     style="color:white; border:1px solid #d4af37; padding:10px 20px; border-radius:20px; text-decoration:none;">
-     View Location 📍
-  </a>
-</section>
-  <section class="section reveal">
-  <h2 class="gold">Save the Date</h2>
-  <p>We can’t wait to celebrate this beautiful journey with you.</p>
-  <p class="gold">25 April 2026</p>
+  <div id="gallery" class="gallery"></div>
 </section>
 
-<script>
-// COUNTDOWN
-const weddingDate = new Date("April 25, 2026 00:00:00").getTime();
-
-setInterval(() => {
-  const now = new Date().getTime();
-  const distance = weddingDate - now;
-
-  const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  const hours = Math.floor((distance / (1000 * 60 * 60)) % 24);
-  const minutes = Math.floor((distance / (1000 * 60)) % 60);
-
-  document.getElementById("countdown").innerHTML =
-    days + " Days • " + hours + " Hours • " + minutes + " Min";
-}, 1000);
-
-// SCROLL REVEAL
-window.addEventListener('scroll', () => {
-  document.querySelectorAll('.reveal').forEach(el => {
-    const top = el.getBoundingClientRect().top;
-    if (top < window.innerHeight - 100) {
-      el.classList.add('active');
-    }
-  });
-});
-
-// PARTICLES
-const canvas = document.getElementById("particles");
-const ctx = canvas.getContext("2d");
-
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-let particles = [];
-
-for (let i = 0; i < 100; i++) {
-  particles.push({
-    x: Math.random() * canvas.width,
-    y: Math.random() * canvas.height,
-    r: Math.random() * 2,
-    d: Math.random() * 0.8
-  });
-}
-
-function draw() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle = "#d4af37";
-
-  particles.forEach(p => {
-    ctx.beginPath();
-    ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
-    ctx.fill();
-  });
-
-  particles.forEach(p => {
-    p.y += p.d;
-    if (p.y > canvas.height) {
-      p.y = 0;
-    }
-  });
-}
-
-setInterval(draw, 33);
-</script>
-  <audio autoplay loop>
-  <source src="KASHISH (Official Music Video) Ashish Bhatia Kashish Ratnani Omkar Singh Song 2024.mp3" type="audio/mpeg">
-</audio>
 <script>
 const cloudName = "dmboosevq";
 
-const gallery = document.getElementById("cloudinary-gallery");
-
-fetch(`https://res.cloudinary.com/${cloudName}/image/list/wedding.json`)
-  .then(res => res.json())
-  .then(data => {
-    data.resources.forEach(img => {
-      const image = document.createElement("img");
-      image.src = `https://res.cloudinary.com/${cloudName}/image/upload/${img.public_id}.jpg`;
+// LOAD GALLERY
+function loadGallery(){
+  fetch(`https://res.cloudinary.com/${cloudName}/image/list/wedding.json`)
+  .then(res=>res.json())
+  .then(data=>{
+    const gallery=document.getElementById("gallery");
+    gallery.innerHTML="";
+    data.resources.forEach(img=>{
+      const image=document.createElement("img");
+      image.src=img.secure_url;
       gallery.appendChild(image);
     });
-  })
-  .catch(err => console.log(err));
-</script>
-  <script>
-function uploadImage() {
-  const file = document.getElementById("fileInput").files[0];
+  });
+}
 
-  if (!file) {
-    alert("Please select a file first!");
+// UPLOAD FUNCTION (NO GOOGLE FORM ANYWHERE)
+function uploadImage(){
+  const file=document.getElementById("fileInput").files[0];
+
+  if(!file){
+    alert("Select image first");
     return;
   }
 
-  const formData = new FormData();
-  formData.append("file", file);
-  formData.append("upload_preset", "wedding_upload");
+  const formData=new FormData();
+  formData.append("file",file);
+  formData.append("upload_preset","wedding_upload");
 
-  fetch("https://api.cloudinary.com/v1_1/dmboosevq/image/upload", {
-    method: "POST",
-    body: formData
+  fetch(`https://api.cloudinary.com/v1_1/${cloudName}/image/upload`,{
+    method:"POST",
+    body:formData
   })
-  .then(res => res.json())
-  .then(data => {
-    alert("Uploaded successfully ❤️");
-    location.reload();
-  })
-  .catch(err => {
-    alert("Upload failed ❌");
-    console.log(err);
+  .then(res=>res.json())
+  .then(data=>{
+    alert("Uploaded ❤️");
+
+    // instantly add image
+    const gallery=document.getElementById("gallery");
+    const image=document.createElement("img");
+    image.src=data.secure_url;
+    gallery.prepend(image);
+
+    document.getElementById("fileInput").value="";
   });
 }
+
+// LOAD ON START
+loadGallery();
 </script>
+
 </body>
 </html>
