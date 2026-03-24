@@ -142,9 +142,9 @@ canvas {
 <section class="section reveal">
   <h2 class="gold">Moments</h2>
   <div class="gallery">
-    <img src="photo2.jpg">
-    <img src="photo3.jpg">
-    <img src="photo4.jpg">
+    <img src="IMG_20260324_151205_575.jpg">
+    <img src="IMG_20260324_154809_627.jpg">
+    <img src="IMG_20260324_162950_980 (1).jpg">
   </div>
 </section>
 
@@ -164,6 +164,11 @@ canvas {
    style="display:inline-block; margin-top:25px; background:linear-gradient(45deg,#d4af37,#f9e79f); color:black; padding:14px 30px; border-radius:30px; text-decoration:none; font-weight:600; box-shadow:0 5px 20px rgba(212,175,55,0.4); transition:0.3s;">
    Upload Photos 📸
 </a>
+</section>
+ <section class="section reveal">
+  <h2 class="gold">Live Guest Memories</h2>
+  <p>Moments shared by our loved ones ❤️</p>
+  <div id="cloudinary-gallery" class="gallery"></div>
 </section>
   <section class="section reveal">
   <h2 class="gold">The Invitation</h2>
@@ -254,6 +259,21 @@ setInterval(draw, 33);
   <audio autoplay loop>
   <source src="KASHISH (Official Music Video) Ashish Bhatia Kashish Ratnani Omkar Singh Song 2024.mp3" type="audio/mpeg">
 </audio>
+<script>
+const cloudName = "dmboosevq";
 
+const gallery = document.getElementById("cloudinary-gallery");
+
+fetch(`https://res.cloudinary.com/${cloudName}/image/list/wedding.json`)
+  .then(res => res.json())
+  .then(data => {
+    data.resources.forEach(img => {
+      const image = document.createElement("img");
+      image.src = `https://res.cloudinary.com/${cloudName}/image/upload/${img.public_id}.jpg`;
+      gallery.appendChild(image);
+    });
+  })
+  .catch(err => console.log(err));
+</script>
 </body>
 </html>
