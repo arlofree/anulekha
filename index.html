@@ -62,6 +62,7 @@ canvas{position:fixed;top:0;left:0;z-index:-1;}
     <p class="jj">We'r Getting Married</p>
     
     <p class="gold">25 April 2026</p>
+      <button onclick="startExperience()">Join Our Celebration ✨</button>
   </div>
 </section>
 
@@ -146,7 +147,7 @@ window.addEventListener('load',()=>{
 </section>
 
 <!-- AUDIO -->
-<audio autoplay loop>
+<audio id="bg-music" loop>
   <source src="e.mp3" type="audio/mpeg">
 </audio>
 
@@ -203,6 +204,28 @@ function uploadImage(){
     .then(res=>res.json())
     .then(data=>{alert("Uploaded ❤️"); const image=document.createElement("img");image.src=data.secure_url;gallery.prepend(image); document.getElementById("fileInput").value="";})
     .catch(err=>{alert("Upload failed ❌"); console.log(err);});
+}
+    function startExperience() {
+  // PLAY MUSIC
+  const music = document.getElementById("bg-music");
+  music.play();
+
+  // START AUTO SCROLL
+  let scrollPos = window.scrollY;
+
+  function slowScroll(){
+    scrollPos += 1.50; // SAME speed as your old code
+    window.scrollTo(0, scrollPos);
+
+    if(scrollPos < document.body.scrollHeight - window.innerHeight){
+      requestAnimationFrame(slowScroll);
+    }
+  }
+
+  requestAnimationFrame(slowScroll);
+
+  // HIDE BUTTON AFTER CLICK
+  document.querySelector("button").style.display = "none";
 }
 </script>
 
